@@ -1,7 +1,8 @@
 library(tidyverse)
+library(countrycode)
 
 # load data
-data <- read_csv("data/raw/3d.all18.csv") %>%
+data <- read.csv("data/raw/3d.all18.csv",stringsAsFactors = FALSE) %>%
   # Make dyadic per product (also conveniently makes NAs numeric)
   pivot_longer(8:245,names_to="seller",values_to="value") %>%
   # Shorten seller names to just 3 letter iso3 code
@@ -27,3 +28,9 @@ dyadic<-as.data.frame(cor(data[,8:245],use="pairwise.complete.obs",method="pears
 # Write those into new datasets
 write_rds(dyadic,path="data/dyadic2018.rds")
 write_csv(dyadic,path="data/dyadic2018.csv")
+
+
+for (i in 8:245) {
+  print(length(!is.na(data[,i])))
+}
+
