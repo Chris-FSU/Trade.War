@@ -3,7 +3,7 @@ Do countries which export similar goods to the same customers fight more?
 
 Chatagnier and Kavakli 2017 show that countries which export similar goods fight more.
 
-I will build an index which captures this trade profile similarity while accounting for customer countries.
+I will replicate and improve their work by adding country-specific data to the profiles and by specifying high-rent industries as more likely to induce conflict.
 
 # Proof of Concept
 proof.of.concept.R uses 3d.all18.csv to create dyadic2018.rds
