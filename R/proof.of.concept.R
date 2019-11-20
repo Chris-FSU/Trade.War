@@ -2,7 +2,7 @@ library(tidyverse)
 library(countrycode)
 
 # load data
-data <- read.csv("data/raw/3d.all18.csv",stringsAsFactors = FALSE) %>%
+data <- read.csv("data/wits/3d.all18.csv",stringsAsFactors = FALSE) %>%
   # Make dyadic per product (also conveniently makes NAs numeric)
   pivot_longer(8:245,names_to="seller",values_to="value") %>%
   # Shorten seller names to just 3 letter iso3 code
