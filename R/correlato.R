@@ -1,9 +1,7 @@
 library(tidyverse)
 
-data<-read_rds("data/massive.rds")
-
 ### Data for 1962
-data.yr<-filter(data, year == 1962)
+data.yr<-read_rds("data/by.year/1962.rds")
 
 # isolate exports
 by.exp<-pivot_wider(data.yr, names_from = exporter, values_from = value)
