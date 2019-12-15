@@ -11,13 +11,13 @@ filename<-paste0("data/by.year/",sets[annum],".rds")
 data.yr<-read_rds(filename)
 
 # isolate exports
-by.exp<-pivot_wider(data.yr, names_from = exporter, values_from = value)
+by.exp<-pivot_wider(data.yr, names_from = exporter, values_from = value, values_fn=list(value = sum))
 by.exp[is.na(by.exp)] <- 0
 # store vector of columns
 expcols<-ncol(by.exp)-4
 
 # isolate imports
-by.imp<-pivot_wider(data.yr, id_cols =c("exporter","sitc4") , names_from = importer, values_from = value)
+by.imp<-pivot_wider(data.yr, id_cols =c("exporter","sitc4") , names_from = importer, values_from = value, values_fn=list(value = sum))
 by.imp[is.na(by.imp)] <- 0
 # store vector of columns
 impcols<-ncol(by.imp)-2
