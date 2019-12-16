@@ -51,4 +51,6 @@ comp<-bind_rows(read_rds("data/by.year/comp1962.rds"),
             read_rds("data/by.year/comp1999.rds"),) %>%
   left_join(starts) %>%
   mutate(is.war = replace_na(is.war,FALSE)) %>%
-  filter(country.a != country.b)
+  filter(country.a != country.b) %>%
+write_rds("data/comp.rds")
+write_csv("data/comp.csv")
