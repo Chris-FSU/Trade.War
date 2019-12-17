@@ -49,6 +49,12 @@ for (jahr in 37:38){
   rm(imp,exp)
 }
 
+# Get interstate war data
+war<-read_csv("data/cow/directed_dyadic_war.csv") %>%
+  filter(warstrtyr >1961) %>%
+  select(statea,warstrtyr,warolea) %>%
+  rename(year = warstrtyr)
+
 # One dataset to bring them all and in the darkness bind them
 imports<-bind_rows(read_rds("data/profiles/imp1962.rds"),
                 read_rds("data/profiles/imp1963.rds"),
@@ -87,33 +93,48 @@ imports<-bind_rows(read_rds("data/profiles/imp1962.rds"),
                 read_rds("data/profiles/imp1996.rds"),
                 read_rds("data/profiles/imp1997.rds"),
                 read_rds("data/profiles/imp1998.rds"),
-                read_rds("data/profiles/imp1999.rds"))
+                read_rds("data/profiles/imp1999.rds")) %>%
+  left_join(war) %>%
+  write_rds("data/profiles/imports.rds")
 
-# Get interstate war data
-war<-read_csv("data/cow/directed_dyadic_war.csv") %>%
-  filter(warstrtyr >1961) %>%
-  select(statea,stateb,warstrtyr,warendyr,warolea,waroleb,wardyadrolea,wardyadroleb)
-
-starts<-select(war,warstrtyr,statea,stateb,wardyadrolea,wardyadroleb) %>%
-  rename(year = warstrtyr) %>%
-  mutate(is.war = TRUE)
-
-aggressors<-select(starts,year,statea,wardyadrolea) %>%
-  filter(wardyadrolea == 1) %>%
-  select(-wardyadrolea) %>%
-  distinct()
-
-defenders<-select(starts,year,statea,wardyadrolea) %>%
-  filter(wardyadrolea == 3) %>%
-  select(-wardyadrolea) %>%
-  distinct()
-
-# get trade data
-years <- unique(aggressors$year)
-trade <- read_dta("data/nber/wtf62.dta")
-namesNcodes<-read_csv("data/names.and.codes.csv")
-for (i in 1:8){
-  trade$importer[which(trade$importer %in% namesNcodes$old.name[i])]<-namesNcodes$new.name[i]
-  trade$exporter[which(trade$exporter %in% namesNcodes$old.name[i])]<-namesNcodes$new.name[i]
-}
-trade<-mutate(trade,statea = countrycode(country.a,'country.name','cown'))
+# Or . . . two rather
+exports<-bind_rows(read_rds("data/profiles/exp1962.rds"),
+                   read_rds("data/profiles/exp1963.rds"),
+                   read_rds("data/profiles/exp1964.rds"),
+                   read_rds("data/profiles/exp1965.rds"),
+                   read_rds("data/profiles/exp1966.rds"),
+                   read_rds("data/profiles/exp1967.rds"),
+                   read_rds("data/profiles/exp1968.rds"),
+                   read_rds("data/profiles/exp1969.rds"),
+                   read_rds("data/profiles/exp1970.rds"),
+                   read_rds("data/profiles/exp1971.rds"),
+                   read_rds("data/profiles/exp1972.rds"),
+                   read_rds("data/profiles/exp1973.rds"),
+                   read_rds("data/profiles/exp1974.rds"),
+                   read_rds("data/profiles/exp1975.rds"),
+                   read_rds("data/profiles/exp1976.rds"),
+                   read_rds("data/profiles/exp1977.rds"),
+                   read_rds("data/profiles/exp1978.rds"),
+                   read_rds("data/profiles/exp1979.rds"),
+                   read_rds("data/profiles/exp1980.rds"),
+                   read_rds("data/profiles/exp1981.rds"),
+                   read_rds("data/profiles/exp1982.rds"),
+                   read_rds("data/profiles/exp1983.rds"),
+                   read_rds("data/profiles/exp1984.rds"),
+                   read_rds("data/profiles/exp1985.rds"),
+                   read_rds("data/profiles/exp1986.rds"),
+                   read_rds("data/profiles/exp1987.rds"),
+                   read_rds("data/profiles/exp1988.rds"),
+                   read_rds("data/profiles/exp1989.rds"),
+                   read_rds("data/profiles/exp1990.rds"),
+                   read_rds("data/profiles/exp1991.rds"),
+                   read_rds("data/profiles/exp1992.rds"),
+                   read_rds("data/profiles/exp1993.rds"),
+                   read_rds("data/profiles/exp1994.rds"),
+                   read_rds("data/profiles/exp1995.rds"),
+                   read_rds("data/profiles/exp1996.rds"),
+                   read_rds("data/profiles/exp1997.rds"),
+                   read_rds("data/profiles/exp1998.rds"),
+                   read_rds("data/profiles/exp1999.rds")) %>%
+  left_join(war) %>%
+  write_rds("data/profiles/exports.rds")

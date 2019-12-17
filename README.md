@@ -11,7 +11,7 @@ I will replicate and improve their work by adding country-specific data to the p
 
 Comp is complete. Now it needs economic and capabilities data as control variables. I've e-mailed Tyson Chatagnier for those replication materials since the link on his website was broken.
 
-While I'm waiting, I'll work backwards to identify the trade profile differences between warring and non-warring states as well as between aggressors and defenders.
+Imports and Exports are ready for differentiation between the trade profiles of aggressors, defenders, joiners, and non-warring states.
 
 # Correlator
 
@@ -26,12 +26,13 @@ Once I have dyadic trade competition, I will regress it against MIDs from the co
 
 # Next
 
-Next I'll examine the monadic trade portfolios of aggressors, victims, and non-warring state-years. 
-I predict higher proportions of certain exports from aggressors and victims. Goods from which rents can easily be extracted are more valuable prizes and narrow the bargaining window.
+I need the control variables used in C&K17. I may have to go get them myself. I'm waiting for an e-mail response from Chatagnier.
 
 I can also use the WITS data to try to extend this model beyond 2000.
 
 # Data Sources
 [Nber came from here](https://cid.econ.ucdavis.edu/nberus.html).
-[Wits data came from here.](http://wits.worldbank.org/WITS/WITS/AdvanceQuery/RawTradeData/QueryDefinition.aspx?Page=RawTradeData)
-[COW data came from the Dyadic Inter-state War Dataset here.](https://correlatesofwar.org/data-sets/COW-war)
+
+[Wits data came from here](http://wits.worldbank.org/WITS/WITS/AdvanceQuery/RawTradeData/QueryDefinition.aspx?Page=RawTradeData).
+
+[COW data came from the Dyadic Inter-state War Dataset here](https://correlatesofwar.org/data-sets/COW-war).
