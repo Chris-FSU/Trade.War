@@ -94,8 +94,10 @@ imports<-bind_rows(read_rds("data/profiles/imp1962.rds"),
                 read_rds("data/profiles/imp1997.rds"),
                 read_rds("data/profiles/imp1998.rds"),
                 read_rds("data/profiles/imp1999.rds")) %>%
-  left_join(war) %>%
-  write_rds("data/profiles/imports.rds")
+  left_join(war)
+imports[is.na(imports)] <- 0
+write_rds(imports,"data/profiles/imports.rds")
+write_csv(imports,"data/profiles/imports.csv")
 
 # Or . . . two rather
 exports<-bind_rows(read_rds("data/profiles/exp1962.rds"),
@@ -136,5 +138,24 @@ exports<-bind_rows(read_rds("data/profiles/exp1962.rds"),
                    read_rds("data/profiles/exp1997.rds"),
                    read_rds("data/profiles/exp1998.rds"),
                    read_rds("data/profiles/exp1999.rds")) %>%
-  left_join(war) %>%
-  write_rds("data/profiles/exports.rds")
+  left_join(war)
+exports[is.na(exports)] <- 0
+write_rds("data/profiles/exports.rds")
+write_csv("data/profiles/exports.csv")
+
+# Mean was just not working, so I did this.
+meaner<-function(x){
+    sum(x,na.rm=TRUE)/length(na.omit(x))
+}
+
+at.peace <- offense <- cooffense <- defence <- codefence <-NA
+for (i in 3:1692) {
+  at.peace[i] <- meaner(data[data$warolea == 0,i])
+  offense[i] <- meaner(data[data$warolea == 1,i])
+  cooffense[i] <- meaner(data[data$warolea == 2,i])
+  defence[i] <- meaner(data[data$warolea == 3,i])
+  codefence[i] <- meaner(data[data$warolea == 4,i])
+}
+averages<-as.data.frame(matrix(c(at.peace,offense,cooffense,defence,codefence),ncol=5))
+
+
