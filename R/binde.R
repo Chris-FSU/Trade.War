@@ -48,7 +48,7 @@ comp<-bind_rows(read_rds("data/by.year/comp1962.rds"),
             read_rds("data/by.year/comp1996.rds"),
             read_rds("data/by.year/comp1997.rds"),
             read_rds("data/by.year/comp1998.rds"),
-            read_rds("data/by.year/comp1999.rds"),) %>%
+            read_rds("data/by.year/comp1999.rds")) %>%
   left_join(starts) %>%
   mutate(is.war = replace_na(is.war,FALSE)) %>%
   filter(country.a != country.b) %>%
