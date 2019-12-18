@@ -1,14 +1,38 @@
 library(tidyverse)
 library(countrycode)
 
-# Get interstate war data
-war<-read_csv("data/cow/directed_dyadic_war.csv") %>%
-  filter(warstrtyr >1961) %>%
-  select(statea,stateb,warstrtyr,warendyr,warolea,waroleb,wardyadrolea,wardyadroleb)
+MIDA <- read_csv("data/cow/MIDA 4.3.csv") %>%
+  filter(styear >1961) %>%
+  select(dispnum3,styear,endyear,outcome,fatality)
 
-starts<-select(war,warstrtyr,statea,stateb,wardyadrolea,wardyadroleb) %>%
-  rename(year = warstrtyr) %>%
-  mutate(is.war = TRUE)
+MID <- read_csv("data/cow/MIDB 4.3.csv") %>%
+  filter(styear >1961) %>%
+  select(dispnum3, stabb, ccode, styear, endyear, hiact, hostlev, orig, sidea) %>%
+  left_join(MIDA) %>%
+  mutate(fatality = na_if(fatality,-9),
+         outcome = na_if(outcome,-9))
+rm(MIDA)
+
+attacher<-as.data.frame(matrix(rep(0,3),ncol=3))
+names(attacher)<-c("dispnum3","ccode","stateb")
+each.disp<-unique(MID$dispnum3)
+for (i in 1:length(each.disp)){
+  side1<-MID$ccode[MID$dispnum3==each.disp[i] & MID$sidea==1]
+  side0<-MID$ccode[MID$dispnum3==each.disp[i] & MID$sidea==0]
+  disp<-rep(each.disp[i],length(side0)*length(side1)*2)
+  ccode<-c(rep(side1,length(side0)),rep(side0,length(side1)))
+  opp<-c(rep(side0,length(side1)),rep(side1,length(side0)))
+  identifiers<-as.data.frame(matrix(c(disp,ccode,opp),ncol=3))
+  names(identifiers)<-c("dispnum3","ccode","stateb")
+  attacher<-bind_rows(attacher,identifiers)
+}
+war.data <- filter(attacher, dispnum3 != 0) %>%
+  left_join(MID) %>%
+  select(-sidea,-stabb,-endyear,-orig) %>%
+  rename(statea = ccode,
+         year = styear)
+# write_rds(war.data,"data/MID.rds")
+# write_csv(war.data,"data/MID.csv")
 
 # Read in a correlation set
 comp<-bind_rows(read_rds("data/by.year/comp1962.rds"),
@@ -49,8 +73,7 @@ comp<-bind_rows(read_rds("data/by.year/comp1962.rds"),
             read_rds("data/by.year/comp1997.rds"),
             read_rds("data/by.year/comp1998.rds"),
             read_rds("data/by.year/comp1999.rds")) %>%
-  left_join(starts) %>%
-  mutate(is.war = replace_na(is.war,FALSE)) %>%
   filter(country.a != country.b) %>%
-write_rds("data/comp.rds")
-write_csv("data/comp.csv")
+  left_join(war.data)
+# write_rds("data/comp.rds")
+# write_csv("data/comp.csv")
