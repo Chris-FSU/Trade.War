@@ -86,9 +86,19 @@ for (jahr in 1:38){
   
   # Combine them
   comp<-left_join(exp,imp) %>%
+    filter(country.a != "Neth.Ant.Aru" &
+             country.a != "New Calednia" &
+             country.a != "St.Kt-Nev-An" &
+             country.a != "St.Pierre Mq",
+           country.b != "Neth.Ant.Aru" &
+             country.b != "New Calednia" &
+             country.b != "St.Kt-Nev-An" &
+             country.b != "St.Pierre Mq",
+           country.a != country.b) %>%
     # Enter cow codes
     mutate(statea = countrycode(country.a,'country.name','cown'),
-           stateb = countrycode(country.b,'country.name','cown'))
+           stateb = countrycode(country.b,'country.name','cown'),
+           year = sets[jahr])
   
   # Save it
   output.filename<-paste0("data/by.year/comp",sets[jahr],".rds")

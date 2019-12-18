@@ -74,6 +74,58 @@ comp<-bind_rows(read_rds("data/by.year/comp1962.rds"),
             read_rds("data/by.year/comp1998.rds"),
             read_rds("data/by.year/comp1999.rds")) %>%
   filter(country.a != country.b) %>%
+  filter(country.a != "Afr.Other NS" &
+           country.a != "Eur.Other NE" &
+           country.a != "Falkland Is" &
+           country.a != "Neutral Zone" &
+           country.a != "Oth.Oceania" &
+           country.a != "St.Helena") %>%
+  filter(country.b != "Afr.Other NS" &
+           country.b != "Eur.Other NE" &
+           country.b != "Falkland Is" &
+           country.b != "Neutral Zone" &
+           country.b != "Oth.Oceania" &
+           country.b != "St.Helena") %>%
   left_join(war.data)
-# write_rds("data/comp.rds")
-# write_csv("data/comp.csv")
+write_rds(comp,"data/comp.rds")
+write_csv(comp,"data/comp.csv")
+
+
+comp$is.war<-ifelse(is.na(comp$dispnum3),0,1)
+# Remove region sums
+comp<-comp[-which(str_detect(comp$country.a,"NES")),]
+comp<-comp[-which(str_detect(comp$country.b,"NES")),]
+# Remove sub-regions of China
+comp<-comp[-which(str_detect(comp$country.a,"China ")),]
+comp<-comp[-which(str_detect(comp$country.b,"China ")),]
+
+# Averages
+mean(comp$exp.comp[comp$is.war==TRUE])
+mean(comp$exp.comp[comp$is.war==FALSE])
+mean(comp$imp.comp[comp$is.war==TRUE],na.rm=TRUE)
+mean(comp$imp.comp[comp$is.war==FALSE],na.rm=TRUE)
+
+# Many countries are in the data which did not yet exist. These need to be deleted.
+# To see which ones they are, run sort(table(comp$country.b[which(is.na(comp$imp.comp))]), decreasing = TRUE) before the next line.
+comp<-comp[-which(is.na(comp$imp.comp)),]
+
+midtrue<-comp[comp$is.war==TRUE,]
+midfalse<-comp[comp$is.war==FALSE,]
+tapply(midtrue$exp.comp,midtrue$year,mean)
+tapply(midfalse$exp.comp,midfalse$year,mean)
+tapply(midtrue$imp.comp,midtrue$year,mean)
+tapply(midfalse$imp.comp,midfalse$year,mean)
+year.avgs<-data.frame(matrix(c(tapply(midtrue$exp.comp,midtrue$year,mean),
+                    tapply(midfalse$exp.comp,midfalse$year,mean),
+                    tapply(midtrue$imp.comp,midtrue$year,mean),
+                    tapply(midfalse$imp.comp,midfalse$year,mean)),ncol=4))
+row.names(year.avgs)<-c(1962:1999)
+colnames(year.avgs)<-c("exp.mid","exp.pax","imp.mid","imp.pax")
+write_csv(year.avgs,"data/year.avgs.csv")
+
+# Fix this later
+ggplot(year.avgs,aes(x=seq_along(imp.mid))) +
+     geom_smooth(aes(y=year.avgs$imp.mid,col=1)) +
+  geom_smooth(aes(y=year.avgs$imp.pax,col=2)) +
+  geom_smooth(aes(y=year.avgs$exp.mid,col=3)) +
+  geom_smooth(aes(y=year.avgs$exp.pax,col=4))
