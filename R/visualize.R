@@ -7,7 +7,7 @@ data<-read_csv("data/year.avgs.csv") %>%
 thing1 <- ggplot(data,aes(x=year)) +
   geom_point(aes(y=exp.mid),color=1) +
   geom_smooth(aes(y=exp.pax),color=1) +
-  labs(title="Export Similarity of MID and non-MID Dyads", 
+  labs(title="Export Similarity and MIDs", 
        subtitle = "Points are yearly averages among MID Dyads",
        y="Export Similarity") +
   theme_minimal()
@@ -15,7 +15,7 @@ thing1 <- ggplot(data,aes(x=year)) +
 thing2 <- ggplot(data,aes(x=year)) +
   geom_point(aes(y=imp.mid),color=2) +
   geom_smooth(aes(y=imp.pax),color=2) +
-  labs(title="Import Similarity of MID and non-MID Dyads", 
+  labs(title="Import Similarity and MIDs", 
        subtitle = "Points are yearly averages among MID Dyads",
        y="Import Similarity") +
   theme_minimal()

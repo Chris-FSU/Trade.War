@@ -1,6 +1,7 @@
 library(tidyverse)
 library(countrycode)
 
+# MID data
 MIDA <- read_csv("data/cow/MIDA 4.3.csv") %>%
   filter(styear >1961) %>%
   select(dispnum3,styear,endyear,outcome,fatality)
