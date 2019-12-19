@@ -9,6 +9,14 @@ I further intend to examine the trade portfolios of belligerents, victims, and n
 
 I will replicate and improve their work by adding country-specific data to the profiles, adding import competition, and describing the average differences in portfolios of belligerents, victims, and non-warring state-years.
 
+# Results so far . . .
+
+![](https://github.com/Chris-FSU/Trade.War/blob/master/ExpImpSim.png)
+
+Among dyads engaged in a MID (shown with points), export similarity and import similarity are both higher than the averages among non-MID dyads.
+
+In plain English, countries that fight more tend to both import and export a lot of the same goods.
+
 # Current State
 
 Comp is complete. Now it needs economic and capabilities data as control variables. I've e-mailed Tyson Chatagnier for those replication materials since the link on his website was broken.
