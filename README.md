@@ -1,6 +1,8 @@
 # Question
 Do countries which export similar goods to the same customers fight more?
 
+Do countries which import similar goods fight more?
+
 Chatagnier and Kavakli 2017 show that countries which export similar goods fight more. They did not account for competition over specific customers. They also did not examine import competition.
 
 I further intend to examine the trade portfolios of belligerents, victims, and non-warring state-years for a descriptive analysis. This atheoretical approach might indicate which markets are more worth fighting for.
@@ -19,14 +21,14 @@ This replicates the product-level correlations for exports, as C&K17 did, and fo
 
 # Comp
 
-data/comp has all correlations and a binary variable for whether a war was initiated in that dyad year.
+data/comp has all correlations and a binary variable for whether an MID was initiated in that dyad year.
 
 # End Game
 Once I have dyadic trade competition, I will regress it against MIDs from the correlates of war project with appropriate controls.
 
 # Next
 
-I need the control variables used in C&K17. I may have to go get them myself. I'm waiting for an e-mail response from Chatagnier.
+I need the control variables used in C&K17. I have their replication data.
 
 I can also use the WITS data to try to extend this model beyond 2000.
 
