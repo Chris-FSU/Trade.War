@@ -33,3 +33,19 @@ sd(data$delta.exp.comp,na.rm=TRUE)
 
 # Trade similarities do not significantly decrease after 1 year of war.
 # Test longer time gaps.
+
+data<- read_rds("data/comp.rds") %>%
+  filter(!is.na(statea),
+         !is.na(stateb))
+
+just.the.MIDs<-data[!is.na(data$dispnum3),]
+just.the.MIDs$pb.imps<- just.the.MIDs$pb.exps<- NA
+for (i in 1:length(just.the.MIDs$country.b)){
+  just.the.MIDs$pb.imps[i]<-data$imp.comp[data$year==(just.the.MIDs$endyear[i]+1) & data$country.a == just.the.MIDs$country.a[i] & data$country.b == just.the.MIDs$country.b[i] ]
+  just.the.MIDs$pb.exps[i]<-data$exp.comp[data$year==(just.the.MIDs$endyear[i]+1) &
+                                            data$country.a == just.the.MIDs$country.a[i] &
+                                            data$country.b == just.the.MIDs$country.b[i] ]
+}
+# The above loop stops at 160. I'm not yet sure why, but it's sleepy times. I'll figure it out in the morning.
+just.the.MIDs$delta.exp.comp <- just.the.MIDs$pb.exps - just.the.MIDs$exp.comp
+just.the.MIDs$delta.imp.comp <- just.the.MIDs$pb.imps - just.the.MIDs$imp.comp

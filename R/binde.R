@@ -29,11 +29,11 @@ for (i in 1:length(each.disp)){
 }
 war.data <- filter(attacher, dispnum3 != 0) %>%
   left_join(MID) %>%
-  select(-sidea,-stabb,-endyear,-orig) %>%
+  select(-sidea,-stabb,-orig) %>%
   rename(statea = ccode,
          year = styear)
-# write_rds(war.data,"data/MID.rds")
-# write_csv(war.data,"data/MID.csv")
+write_rds(war.data,"data/MID.rds")
+write_csv(war.data,"data/MID.csv")
 
 # Read in a correlation set
 comp<-bind_rows(read_rds("data/by.year/comp1962.rds"),
@@ -88,9 +88,6 @@ comp<-bind_rows(read_rds("data/by.year/comp1962.rds"),
            country.b != "Oth.Oceania" &
            country.b != "St.Helena") %>%
   left_join(war.data)
-write_rds(comp,"data/comp.rds")
-write_csv(comp,"data/comp.csv")
-
 
 comp$is.war<-ifelse(is.na(comp$dispnum3),0,1)
 # Remove region sums
@@ -99,6 +96,9 @@ comp<-comp[-which(str_detect(comp$country.b,"NES")),]
 # Remove sub-regions of China
 comp<-comp[-which(str_detect(comp$country.a,"China ")),]
 comp<-comp[-which(str_detect(comp$country.b,"China ")),]
+
+write_rds(comp,"data/comp.rds")
+write_csv(comp,"data/comp.csv")
 
 # Averages
 mean(comp$exp.comp[comp$is.war==TRUE])
