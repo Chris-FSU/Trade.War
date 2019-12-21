@@ -19,7 +19,7 @@ Among dyads engaged in a MID (shown with points), export similarity and import s
 
 So far, the response to the first two questions is that countries who fight have more similar exports and imports than countries who do not fight. This suggests, but does not prove, that countries who export and import similar goods fight more.
 
-![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/ExpChangeHost.png)
+![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/ExpChangeHost1.png)
 
 A larger decrease in export competition follows higher hostility MIDs. In these charts, the x axis is the export competition at the beginning of the MID. The Y axis is the change in export competition from the year of the MID's start to the year after its end. As hostility escalates, higher previous export competition correlates more strongly with larger reductions in export competition.
 

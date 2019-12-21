@@ -48,11 +48,11 @@ levels(MIDsub$hostlev) <- c("No militarized action",
 ggplot(MIDsub,aes(exp.comp,delta.exp.comp)) +
   geom_point() +
   geom_smooth(method="lm", se=FALSE) +
-  facet_wrap(~hostlev) +
+  facet_wrap(~hostlev,nrow=1) +
   labs(title="Export Competition and Change by Hostility Level",
        x="Export Competition", y="Change in Export Competition") +
   theme_minimal()
-ggsave("fig/ExpChangeHost.png",width=8,height=5)
+ggsave("fig/ExpChangeHost1.png",width=8,height=5)
 summary(lm(delta.exp.comp~exp.comp*hostlev,MIDsub))
 
 ggplot(MIDsub,aes(exp.comp,delta.exp.comp)) +
