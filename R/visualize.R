@@ -21,4 +21,4 @@ thing2 <- ggplot(data,aes(x=year)) +
   theme_minimal()
 
 plot_grid(thing1, thing2, labels = "AUTO")
-ggsave("ExpImpSim.png",width=8,height=5)
+ggsave("fig/ExpImpSim.png",width=8,height=5)

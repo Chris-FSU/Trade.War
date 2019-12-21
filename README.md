@@ -13,11 +13,17 @@ Chatagnier and Kavakli 2017 show that countries which export similar goods fight
 
 # Results so far . . .
 
-![](https://github.com/Chris-FSU/Trade.War/blob/master/ExpImpSim.png)
+![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/ExpImpSim.png)
 
 Among dyads engaged in a MID (shown with points), export similarity and import similarity are both higher than the averages among non-MID dyads (shown with shaded lines).
 
 So far, the response to the first two questions is that countries who fight have more similar exports and imports than countries who do not fight. This suggests, but does not prove, that countries who export and import similar goods fight more.
+
+![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/ExpChangeHost.png)
+
+A larger decrease in export competition follows higher hostility MIDs. In these charts, the x axis is the export competition at the beginning of the MID. The Y axis is the change in export competition from the year of the MID's start to the year after its end. As hostility escalates, higher previous export competition correlates more strongly with larger reductions in export competition.
+
+In other words, states export fewer of the same goods after a MID than before it, but especially so for more violent MIDs. These results hold for other measures of hostility, including fatalities and the highest action. This is approaching an answer to question 3.
 
 # Current State
 
