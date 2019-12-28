@@ -108,8 +108,7 @@ allImps<-bind_rows(read_rds("data/by.year/fullimp1962.rds"),
                   read_rds("data/by.year/fullimp1999.rds")) %>%
   mutate(statea = countrycode(exporter,'country.name','cown')) %>%
 write_rds("data/allImps.rds") %>%
-write_csv("data/allImps.csv") %>%
-rm()
+write_csv("data/allImps.csv")
 
 allExps<-bind_rows(read_rds("data/by.year/fullexp1962.rds"),
                    read_rds("data/by.year/fullexp1963.rds"),
@@ -151,7 +150,26 @@ allExps<-bind_rows(read_rds("data/by.year/fullexp1962.rds"),
                    read_rds("data/by.year/fullexp1999.rds")) %>%
   mutate(statea = countrycode(importer,'country.name','cown')) %>%
   write_rds("data/allExps.rds") %>%
-  write_csv("data/allExps.csv") %>%
-  rm()
+  write_csv("data/allExps.csv")
 
-# Add war data tomorrow!!!
+# Adding War data
+allExps[is.na(allExps)] <- 0
+allExps <- left_join(allExps,read_rds("data/MID.rds")) %>%
+  filter(importer != 'World')
+allExps <- mutate(allExps, is.peace = is.na(allExps$dispnum3))
+
+set <- as.data.frame(matrix(names(allExps)))
+set$noMID <- set$MID <- NA
+for (i in 2:1691) {
+  temp1 <- allExps[,i]
+  temp1 <- temp1  * allExps$is.peace
+  set$noMID[i] <- sum(temp1)/length(temp1[temp1 >0])
+  temp2 <- allExps[,i]
+  temp2 <- temp2  * (1 - allExps$is.peace)
+  set$MID[i] <- sum(temp2)/length(temp2[temp2 >0])
+}
+set$diff <- set$MID - set$noMID
+
+set <- arrange(set, diff) %>%
+  filter(!is.na(diff))
+set$V1[1:5]
