@@ -21,13 +21,11 @@ So far, the response to the first two questions is that countries who fight have
 
 ![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/ExpChangeHost1.png)
 
-A larger decrease in export competition follows higher hostility MIDs. In these charts, the x axis is the export competition at the beginning of the MID. The Y axis is the change in export competition from the year of the MID's start to the year after its end. As hostility escalates, higher previous export competition correlates more strongly with larger reductions in export competition.
+The Y axis is antebellum export competition minus postbellum export competition. Lower Y values indicate that trade similarity reduced over the duration of the MID. The x axis is antebellum export competition. Higher X values indicate more similar exports. If states with more similar exports are fighting to remove each other from the market (and it works) we should expect downward sloping regression lines. 
 
-In other words, states export fewer of the same goods after a MID than before it, but especially so for more violent MIDs. These results hold for other measures of hostility, including fatalities and the highest action. This is approaching an answer to question 3.
+As a matter of fact, the slope becomes more negative and more significant as hostility increases. This indicates that higher hostility MIDs between market competitors succeed in removing competitors from the market.
 
 # Current State
-
-Comp is complete. Now it needs economic and capabilities data as control variables.
 
 Imports and Exports are ready for differentiation between the trade profiles of aggressors, defenders, joiners, and non-warring states.
 
