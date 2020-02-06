@@ -11,6 +11,8 @@
 
 Chatagnier and Kavakli 2017 show that countries which export similar goods fight more. They do not examine the same effects of imports, competition over specific customers, or whether it worked.
 
+As used below, "similarity" is the Pearson's correlation between dollar values of all goods exported from a dyad-year. Two countries who export none of the same goods within the same year will have an export similarity of zero. Two countries who export all of the same goods in the same proportions  within the same year (regardless of economy size) will have an export similarity score of 1. The highest scores tend to be between oil exporting countries.
+
 # Results so far . . .
 
 ![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/ExpImpSim.png)
