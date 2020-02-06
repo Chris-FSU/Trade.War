@@ -3,7 +3,7 @@
 
 2) Do countries which import similar goods fight more?
 
-3) Do losers stop dealing in the same goods as victors, once the war is over?
+3) Do losers stop dealing in the same goods as victors once the war is over?
 
 4) Do markets in certain goods cause more fights than others?
 
@@ -11,21 +11,31 @@
 
 Chatagnier and Kavakli 2017 show that countries which export similar goods fight more. They do not examine the same effects of imports, competition over specific customers, or whether it worked.
 
-As used below, "similarity" is the Pearson's correlation between dollar values of all goods exported from a dyad-year. Two countries who export none of the same goods within the same year will have an export similarity of zero. Two countries who export all of the same goods in the same proportions  within the same year (regardless of economy size) will have an export similarity score of 1. The highest scores tend to be between oil exporting countries.
+As used below, "similarity" is the Pearson's correlation between dollar values of all goods exported from a dyad-year. Two countries who export none of the same goods within the same year will have an export similarity of zero. Two countries who export all of the same goods in the same proportions  within the same year (regardless of economy size) will have an export similarity score of 1. The highest scores tend to be between oil exporting countries. 
+
+The terms "similarity" and "competition" are used interchangeably below. This is because I assume that firms which sell similar goods are in market competition for resource inputs and customers.
 
 # Results so far . . .
 
+In pursuit of questions 1 and 2:
+
 ![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/ExpImpSim.png)
 
-Among dyads engaged in a MID (red line), export similarity and import similarity are both higher than the averages among non-MID dyads (black line).
+Among dyads engaged in a MID (red line), export similarity (left) and import similarity (right) are both higher than the averages among non-MID dyads (black line). The chart to the left reaffirms the findings of Chatagnier and Kavakli and answers question 1. 
 
-So far, the response to the first two questions is that countries who fight have more similar exports and imports than countries who do not fight. This suggests, but does not prove, that countries who export and import similar goods fight more.
+The chart to the right answers question 2. In the time period covered, import similarity is much higher for dyads engaged in MIDs than for peaceful dyads.
+
+In pursuit of question 3:
+
+To examine whether these types of MIDs accomplish their goals, the most relevant cases are those which began with the most export competition and had higher intensity conflicts. If war works as a method of removing market competitors, we should see a reduction in export similarity especially in those cases.
 
 ![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/ExpChangeHost1.png)
 
-The Y axis is antebellum export competition minus postbellum export competition. Lower Y values indicate that trade similarity reduced over the duration of the MID. The x axis is antebellum export competition. Higher X values indicate more similar exports. If states with more similar exports are fighting to remove each other from the market (and it works) we should expect downward sloping regression lines. 
+The Y axis is pre-MID export competition minus post-MID export competition. Lower Y values indicate that export similarity reduced over the duration of the MID. The X axis is pre-MID export competition. Higher X values indicate more similar exports. If states with more similar exports are fighting to remove each other from the market (as Chatagnier and Kavakli claim) and it works (as I claim), then we should expect downward sloping regression lines. We do, in fact, see that, but only as hostility increases.
 
-As a matter of fact, the slope becomes more negative and more significant as hostility increases. This indicates that higher hostility MIDs between market competitors succeed in removing competitors from the market.
+In a regression of the change of export competition on both hostility and pre-MID export competition, the interaction was statistically significant and negative. The coefficient was -.064. Holding hosility equal, higher levels of pre-MID export competition yield higher levels of export similarity. This is unexpected but lends credibility to the interaction effect, which occurs in the opposite direction. Holding export competition equal, hostility level does not have a significant estimated effect on export competition reduction. As the two increase together, they interact to reduce post-MID export similarity. In higher hostility MIDs, dyads with more similar pre-MID exports havea greater reduction in that export similarity by the end of the conflict.
+
+I have not differentiated between winners and losers. It seems likely that losers are the ones to back out of the market, but I need further analysis to confirm this.
 
 # Current State
 

@@ -3,6 +3,8 @@
 
 library(tidyverse)
 
+# You can skip this CPU-intensive data processing by loading the csv on line 40.
+
 data<- read_rds("data/comp.rds") %>%
   filter(!is.na(statea),
          !is.na(stateb))
@@ -29,9 +31,13 @@ for (i in 1:length(MIDsub$country.b)){
 MIDsub$delta.exp.comp <- MIDsub$pb.exps - MIDsub$exp.comp
 MIDsub$delta.imp.comp <- MIDsub$pb.imps - MIDsub$imp.comp
 
-# Save progress
-write_rds(MIDsub,"data/MIDsubset.rds")
-write_csv(MIDsub,"data/MIDsubset.csv")
+# To Save progress, uncomment these two lines:
+# write_rds(MIDsub,"data/MIDsubset.rds")
+# write_csv(MIDsub,"data/MIDsubset.csv")
+
+# If you've ran everything above before, you can retrieve the data by 
+# uncommenting the next line:
+# MIDsub <- read_csv("data/MIDsubset.csv")
 
 # For visualization, drop the sole observation that had hostlev == 0
 length(MIDsub$hostlev[MIDsub$hostlev == 0])
@@ -49,8 +55,9 @@ ggplot(MIDsub,aes(exp.comp,delta.exp.comp)) +
   geom_point() +
   geom_smooth(method="lm", se=FALSE) +
   facet_wrap(~hostlev,nrow=1) +
-  labs(title="Export Competition and Change by Hostility Level",
-       x="Export Competition", y="Change in Export Competition") +
+  labs(title="Does It Work?",
+       subtitle = "Reduction in Trade Competition During MID",
+       x="Pre-MID Export Competition", y="Change in Export Competition During MID") +
   theme_minimal()
 ggsave("fig/ExpChangeHost1.png",width=8,height=5)
 summary(lm(delta.exp.comp~exp.comp*hostlev,MIDsub))
