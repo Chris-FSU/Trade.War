@@ -21,9 +21,7 @@ In pursuit of questions 1 and 2:
 
 ![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/ExpImpSim.png)
 
-Among dyads engaged in a MID (red line), export similarity (left) and import similarity (right) are both higher than the averages among non-MID dyads (black line). The chart to the left reaffirms the findings of Chatagnier and Kavakli and answers question 1. 
-
-The chart to the right answers question 2. In the time period covered, import similarity is much higher for dyads engaged in MIDs than for peaceful dyads.
+As can be seen in the charts, countries generally have more similar imports than exports. The difference of exports is larger than the import difference between MID and peace dyads. There is a substantive difference in both cases. Countries who engage in MIDs have more market competition.
 
 In pursuit of question 3:
 
@@ -35,11 +33,15 @@ The Y axis is pre-MID export competition minus post-MID export competition. Lowe
 
 In a regression of the change of export competition on both hostility and pre-MID export competition, the interaction was statistically significant and negative. The coefficient was -.064. Holding hosility equal, higher levels of pre-MID export competition yield higher levels of export similarity. This is unexpected but lends credibility to the interaction effect, which occurs in the opposite direction. Holding export competition equal, hostility level does not have a significant estimated effect on export competition reduction. As the two increase together, they interact to reduce post-MID export similarity. In higher hostility MIDs, dyads with more similar pre-MID exports havea greater reduction in that export similarity by the end of the conflict.
 
-I have not differentiated between winners and losers. It seems likely that losers are the ones to back out of the market, but I need further analysis to confirm this.
+![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/LosersWeep.png)
+
+Losers' export profiles change more during the course of a war than winners' export profiles do. This is exactly what we should expect if winners force losers out of the markets in which they were previously competing.
+
+This effect is exacerbated by the level of hostility in a conflict. In more hostile conflicts, losers' export profiles change more drastically than in less hostile conflicts. Hostility level does not have a significant effect on the change in winners' exports.
+
+Run script Q3b.R for more information.
 
 # Current State
-
-Imports and Exports are ready for differentiation between the trade profiles of aggressors, defenders, joiners, and non-warring states.
 
 # Next
 

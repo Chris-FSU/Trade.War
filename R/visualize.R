@@ -20,3 +20,27 @@ thing2 <- ggplot(data,aes(x=year)) +
 
 plot_grid(thing1, thing2, labels = "AUTO")
 #ggsave("fig/ExpImpSim.png",width=8,height=5)
+
+
+data<-read_csv("data/comp.csv")
+
+data$is.war <-as.logical(data$is.war)
+thing3<-ggplot(data,aes(y=exp.comp,x=is.war)) +
+  geom_violin() +
+  geom_boxplot(width=0.1) +
+  labs(title="Export Similarity and MIDs",
+       y="Export Similarity",
+       x="Is a MID occuring in this Dyad-Year?") +
+  theme_minimal()
+
+thing4<-ggplot(data,aes(y=imp.comp,x=is.war)) +
+  geom_violin() +
+  geom_boxplot(width=0.1) +
+  labs(title="Import Similarity and MIDs",
+       y="Import Similarity",
+       x="Is a MID occuring in this Dyad-Year?") +
+  theme_minimal()
+
+plot_grid(thing3, thing4, labels = "AUTO")
+ggsave("fig/ExpImpSim.png",width=8,height=5)
+

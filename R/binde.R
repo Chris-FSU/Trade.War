@@ -14,7 +14,17 @@ MID <- read_csv("data/cow/MIDB 4.3.csv") %>%
          outcome = na_if(outcome,-9))
 rm(MIDA)
 
-attacher<-as.data.frame(matrix(rep(0,3),ncol=3))
+# Create dummy variables for winners/losers
+MID$victor <- ifelse(
+  MID$sidea==1 & (MID$outcome==1 |MID$outcome==4)| #If stateyear is side A and side A wins or
+  MID$sidea==0 & (MID$outcome==2 |MID$outcome==3), #if stateyear is side B and side B wins
+  1,0)                                             #then yes, victor. Otherwise, no.
+MID$loser <- ifelse(
+  MID$sidea==0 & (MID$outcome==1 |MID$outcome==4)| #If stateyear is side B and side A wins or
+  MID$sidea==1 & (MID$outcome==2 |MID$outcome==3), #if stateyear is side A and side B wins
+  1,0)                                             #then yes, victor. Otherwise, no.
+
+attacher<-as.data.frame(matrix(rep(0,3),ncol=3)) #Make a dataset to attach ccodes, disputes, and statenames
 names(attacher)<-c("dispnum3","ccode","stateb")
 each.disp<-unique(MID$dispnum3)
 for (i in 1:length(each.disp)){
@@ -110,12 +120,13 @@ mean(comp$imp.comp[comp$is.war==FALSE],na.rm=TRUE)
 # To see which ones they are, run sort(table(comp$country.b[which(is.na(comp$imp.comp))]), decreasing = TRUE) before the next line.
 comp<-comp[-which(is.na(comp$imp.comp)),]
 
+# Create a dataset of annual averages for MID and nonMID dyad years
 midtrue<-comp[comp$is.war==TRUE,]
 midfalse<-comp[comp$is.war==FALSE,]
-tapply(midtrue$exp.comp,midtrue$year,mean)
-tapply(midfalse$exp.comp,midfalse$year,mean)
-tapply(midtrue$imp.comp,midtrue$year,mean)
-tapply(midfalse$imp.comp,midfalse$year,mean)
+# tapply(midtrue$exp.comp,midtrue$year,mean)
+# tapply(midfalse$exp.comp,midfalse$year,mean)
+# tapply(midtrue$imp.comp,midtrue$year,mean)
+# tapply(midfalse$imp.comp,midfalse$year,mean)
 year.avgs<-data.frame(matrix(c(tapply(midtrue$exp.comp,midtrue$year,mean),
                     tapply(midfalse$exp.comp,midfalse$year,mean),
                     tapply(midtrue$imp.comp,midtrue$year,mean),
@@ -123,10 +134,3 @@ year.avgs<-data.frame(matrix(c(tapply(midtrue$exp.comp,midtrue$year,mean),
 row.names(year.avgs)<-c(1962:1999)
 colnames(year.avgs)<-c("exp.mid","exp.pax","imp.mid","imp.pax")
 write_csv(year.avgs,"data/year.avgs.csv")
-
-# Fix this later
-ggplot(year.avgs,aes(x=seq_along(imp.mid))) +
-     geom_smooth(aes(y=year.avgs$imp.mid,col=1)) +
-  geom_smooth(aes(y=year.avgs$imp.pax,col=2)) +
-  geom_smooth(aes(y=year.avgs$exp.mid,col=3)) +
-  geom_smooth(aes(y=year.avgs$exp.pax,col=4))
