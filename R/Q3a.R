@@ -36,7 +36,7 @@ MIDsub$delta.imp.comp <- MIDsub$pb.imps - MIDsub$imp.comp
 
 # If you've ran everything above before, you can retrieve the data by 
 # uncommenting the next line:
-# MIDsub <- read_csv("data/MIDsubset.csv")
+MIDsub <- read_csv("data/MIDsubset.csv")
 
 # For visualization, drop the sole observation that had hostlev == 0
 length(MIDsub$hostlev[MIDsub$hostlev == 0])
@@ -52,14 +52,15 @@ levels(MIDsub$hostlev) <- c("No militarized action",
                             "Use of force",
                             "War")
 
-ggplot(MIDsub,aes(exp.comp,delta.exp.comp)) +
-  geom_point() +
-  geom_smooth(method="lm", se=FALSE) +
-  facet_wrap(~hostlev,nrow=1) +
-  labs(title="Does It Work?",
+
+ggplot(MIDsub,aes(exp.comp,pb.exps,color=hostlev)) +
+  geom_smooth(method="lm", se=TRUE) +
+  labs(title="Do MIDs Reduce Trade Competition?",
        subtitle = "Reduction in Trade Competition During MID",
-       x="Pre-MID Export Competition", y="Change in Export Competition During MID") +
-  theme_minimal()
+       x="Pre-MID Export Competition", y="Post-MID Export Competition") +
+  theme_minimal() +
+  geom_abline(slope=1) +
+  scale_color_brewer(palette = "YlOrRd")
 # ggsave("fig/ExpChangeHost1.png",width=8,height=5)
 MIDsub$hostlev <- as.numeric(MIDsub$hostlev)
 summary(lm(delta.exp.comp~exp.comp*hostlev,MIDsub))
@@ -92,3 +93,7 @@ losers<-MIDsub[MIDsub$loser==TRUE,]
 losers<-losers[!is.na(losers$country.a),]
 # write_rds(losers,"data/losers.rds")
 # write_csv(losers,"data/losers.csv")
+neither<-MIDsub[MIDsub$victor==FALSE & MIDsub$loser==FALSE,]
+neither<-neither[!is.na(neither$country.a),]
+# write_rds(neither,"data/neither.rds")
+# write_csv(neither,"data/neither.csv")

@@ -33,9 +33,9 @@ In the above chart, X is pre-MID export competition, and Y is post-MID export co
 
 ![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/LosersWeep.png)
 
-Losers' export profiles change more during the course of a war than winners' export profiles do. This is exactly what we should expect if winners force losers out of the markets in which they were previously competing.
+Losers' export profiles change more during the course of a war than winners' export profiles do. This is exactly what we should expect if winners force losers out of the markets in which they were previously competing. In this chart, MIDs in which neither side was coded as having "yielded" or achieving "victory" were coded as "Neither", for reference.
 
-This effect is exacerbated by the level of hostility in a conflict. In more hostile conflicts, losers' export profiles change more drastically than in less hostile conflicts. Hostility level does not have a significant effect on the change in winners' exports.
+This effect is exacerbated by the level of hostility in a conflict. In more hostile conflicts, losers' export profiles change more drastically than in less hostile conflicts. Hostility level does not change the winners' exports.
 
 Run script Q3b.R for more information.
 
