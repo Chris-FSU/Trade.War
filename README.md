@@ -1,3 +1,5 @@
+[Tyson Chatagnier and Kerim Kavakli 2017](https://journals.sagepub.com/doi/abs/10.1177/0022002715613565?journalCode=jcrb) show that countries which export similar goods are more likely to fight. Their findings have raised fascinating new questions which I hope to explore here. This repository is almost entirely an extension of and addition to their work.
+
 # Questions
 1) Do countries which export similar goods fight more?
 
@@ -8,8 +10,6 @@
 4) Do markets in certain goods cause more fights than others?
 
 5) Do countries which export similar goods fight over the same customers?
-
-Chatagnier and Kavakli 2017 show that countries which export similar goods fight more. They do not examine the same effects of imports, competition over specific customers, or whether it worked.
 
 As used below, "similarity" is the Pearson's correlation between dollar values of all goods exported from a dyad-year. Two countries who export none of the same goods within the same year will have an export similarity of zero. Two countries who export all of the same goods in the same proportions  within the same year (regardless of economy size) will have an export similarity score of 1. The highest scores tend to be between oil exporting countries. 
 
@@ -23,9 +23,11 @@ In pursuit of questions 1 and 2:
 
 As can be seen in the charts, countries generally have more similar imports than exports. The difference of exports is larger than the import difference between MID and peace dyads. There is a substantive difference in both cases. Countries who engage in MIDs have more market competition.
 
+Exports tend to be more specific to a country's specific production factor endowments. A country can't export what it can't produce. Imports do not tend to be so specific because they include goods not used for industry. It may be worthwhile to remove consumer goods from the import data and reexamine.
+
 In pursuit of question 3:
 
-To examine whether these types of MIDs accomplish their goals, the most relevant cases are those which began with the most export competition and had higher intensity conflicts. If war works as a method of removing market competitors, we should see a reduction in export similarity especially in those cases.
+Two types of information are available regarding the success of wars intended to remove market competitors: whether the export competition between state A and state B reduces and whether the losers have particularly large changes to their export profiles. I show that both occur, but the effect seems to be limited to the higher hostility conflicts.
 
 ![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/ExpChangeHost1.png)
 
@@ -35,7 +37,9 @@ In the above chart, X is pre-MID export competition, and Y is post-MID export co
 
 Losers' export profiles change more during the course of a war than winners' export profiles do. This is exactly what we should expect if winners force losers out of the markets in which they were previously competing. In this chart, MIDs in which neither side was coded as having "yielded" or achieving "victory" were coded as "Neither", for reference.
 
-This effect is exacerbated by the level of hostility in a conflict. In more hostile conflicts, losers' export profiles change more drastically than in less hostile conflicts. Hostility level does not change the winners' exports.
+![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/LosersWeepHarder.png)
+
+This chart shows the same information for only the two highest levels of hostility: Use of Force and War. The export-altering effect is exacerbated by the level of hostility in a conflict. In more hostile conflicts, losers' export profiles change more drastically than in less hostile conflicts. Hostility level does not change the winners' exports.
 
 Run script Q3b.R for more information.
 

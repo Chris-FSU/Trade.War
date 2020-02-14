@@ -45,20 +45,34 @@ winlose<-bind_rows(winners,losers,neither)
 write_csv(winlose,"data/winlose.csv")
 write_rds(winlose,"data/winlose.rds")
 
-#winlose <- read_rds("data/winlose.rds")
+winlose <- read_rds("data/winlose.rds")
 
 ggplot(winlose, aes(x=as.factor(outcome), y=same.exp)) + 
   geom_violin() +
   geom_boxplot(width=0.1) +
-  labs(title="Do Losers Leave Markets?", subtitle = "Yes, they do.") +
-  ylab("Correlation of Exports Before and After MID") +
+  labs(title="Losers Leave Markets", 
+       subtitle = "Correlation of Pre-MID and Post-MID Exports by MID outcome") +
+  ylab("Correlation of Pre-MID and Post-MID Exports") +
   xlab("") +
   theme_minimal()
 ggsave("fig/LosersWeep.png",width=8,height=5)
 summary(lm(same.exp~outcome,data=winlose))
 
+
+hihost <-winlose[as.numeric(winlose$hostlev)>=4,]
+ggplot(hihost, aes(x=as.factor(outcome), y=same.exp)) + 
+  geom_violin() +
+  geom_boxplot(width=0.1) +
+  labs(title="When the Going Gets Tough ...", 
+       subtitle = "Export Permanence in High Hostility MIDS") +
+  ylab("Correlation of Exports Before and After MID") +
+  xlab("") +
+  theme_minimal()
+ggsave("fig/LosersWeepHarder.png",width=8,height=5)
+summary(lm(same.exp~outcome,data=hihost))
+
 winlose$hostlev <-as.numeric(winlose$hostlev)
-summary(lm(same.exp~victor*hostlev,data=winlose))
+summary(lm(same.exp~outcome*hostlev,data=winlose))
 
 winlose$loser <- 1 - winlose$victor
 summary(lm(same.exp~loser*hostlev,data=winlose))
