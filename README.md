@@ -23,7 +23,7 @@ In pursuit of questions 1 and 2:
 
 As can be seen in the charts, countries generally have more similar imports than exports. The difference of exports is larger than the import difference between MID and peace dyads. There is a substantive difference in both cases. Countries who engage in MIDs have more market competition.
 
-Exports tend to be more specific to a country's specific production factor endowments. A country can't export what it can't produce. Imports do not tend to be so specific because they include goods not used for industry. It may be worthwhile to remove consumer goods from the import data and reexamine.
+Exports tend to be more specific to a country's production factor endowments. A country can't export what it can't produce. Imports do not tend to be so specific because they include goods not used for industry. It may be worthwhile to remove consumer goods from the import data and reexamine.
 
 In pursuit of question 3:
 
@@ -41,8 +41,6 @@ Losers' export profiles change more during the course of a war than winners' exp
 
 This chart shows the same information for only the two highest levels of hostility: Use of Force and War. The export-altering effect is exacerbated by the level of hostility in a conflict. In more hostile conflicts, losers' export profiles change more drastically than in less hostile conflicts. Hostility level does not change the winners' exports.
 
-Run script Q3b.R for more information.
-
 # Current State
 
 # Next
@@ -51,9 +49,9 @@ Make a dataset with all of the controls used by C&K17 for replication of their w
 
 I can also use the WITS data to try to extend this model beyond 2000.
 
-Pursuant to Q4, establish averages for profiles of MID and non-MID country-years. Subtract one from the other. Examine whether the largest absolute values have some feature in common (for example, high rent-seeking potential).
+Pursuant to Q4, establish averages for profiles of MID and non-MID country-years. Subtract one from the other. Examine whether the largest absolute values have some feature in common (for example, high rent-seeking potential). There are problems to consider here.
 
-Q5 will be a doozy. I need a triadic dataset of trade portfolios and MIDs. Check all MID dyads for high levels of exports to the same country cs. Assuming Q4 yields positive results, these country cs will likely be purchasing large volumes of those goods. 
+Q5 will be a doozy. I need a triadic dataset of trade portfolios and MIDs. Check all MID dyads for high levels of exports to the same country Cs. Assuming Q4 yields positive results, these country Cs will likely be purchasing large volumes of those goods. This is also problematic. 
 
 # End Game
 Regress export similarity and import similarity against MIDs from the correlates of war project with appropriate controls. (Pursuant to Q1 & Q2)

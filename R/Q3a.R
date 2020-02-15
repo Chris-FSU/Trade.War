@@ -42,7 +42,7 @@ MIDsub <- read_csv("data/MIDsubset.csv")
 length(MIDsub$hostlev[MIDsub$hostlev == 0])
 MIDsub<-filter(MIDsub,hostlev > 0)
 
-## The charts below show that similarity between A and B from t1 to t2.
+# The charts below show that similarity between A and B reduces from t1 to t2.
 
 # Make Hostility Level a factor with appropriate labels
 MIDsub$hostlev <- as.factor(MIDsub$hostlev)
@@ -52,38 +52,36 @@ levels(MIDsub$hostlev) <- c("No militarized action",
                             "Use of force",
                             "War")
 
-
 ggplot(MIDsub,aes(exp.comp,pb.exps,color=hostlev)) +
   geom_smooth(method="lm", se=TRUE) +
-  labs(title="Do MIDs Reduce Trade Competition?",
-       subtitle = "Reduction in Trade Competition During MID",
+  labs(title="Do MIDs Reduce Export Competition?",
+       subtitle = "Export Similarity Before and After a MID",
        x="Pre-MID Export Competition", y="Post-MID Export Competition") +
   theme_minimal() +
   geom_abline(slope=1) +
   scale_color_brewer(palette = "YlOrRd")
 # ggsave("fig/ExpChangeHost1.png",width=8,height=5)
-MIDsub$hostlev <- as.numeric(MIDsub$hostlev)
-summary(lm(delta.exp.comp~exp.comp*hostlev,MIDsub))
+summary(lm(pb.exps~exp.comp*as.numeric(MIDsub$hostlev),MIDsub))
 
-ggplot(MIDsub,aes(exp.comp,delta.exp.comp)) +
-  geom_point() +
+ggplot(MIDsub,aes(exp.comp,pb.exps,color=hiact,group=hiact)) +
   geom_smooth(method="lm", se=FALSE) +
-  facet_wrap(~hiact) +
-  labs(title="Export Competition and Change by Highest Action",
-       x="Export Competition", y="Change in Export Competition") +
-  theme_minimal()
-# ggsave("fig/ExpChangeHiAct.png",width=8,height=5)
+  labs(title="Do MIDs Reduce Export Competition?",
+       subtitle = "Export Similarity Before and After a MID",
+       x="Pre-MID Export Competition", y="Post-MID Export Competition") +
+  theme_minimal() +
+  geom_abline(slope=1) +
+  scale_color_gradient(low="green",high="red")
+ggsave("fig/ExpChangeHiAct.png",width=8,height=5)
+summary(lm(pb.exps~exp.comp*hiact,MIDsub))
 
-summary(lm(delta.exp.comp~exp.comp*hiact,MIDsub))
-ggplot(MIDsub,aes(exp.comp,delta.exp.comp)) +
-  geom_point() +
-  geom_smooth(method="lm", se=FALSE) +
-  facet_wrap(~fatality) +
+ggplot(MIDsub,aes(exp.comp,pb.exps,color=fatality,group=fatality)) +
+  geom_smooth(method="lm", se=TRUE) +
   labs(title="Export Competition and Change by Fatality",
        x="Export Competition", y="Change in Export Competition") +
-  theme_minimal()
+  theme_minimal() +
+  scale_color_gradient(low="green",high="red")
 # ggsave("fig/ExpChangeFatal.png",width=8,height=5)
-summary(lm(delta.exp.comp~exp.comp*fatality,MIDsub))
+summary(lm(pb.exps~exp.comp*fatality,MIDsub))
 
 victors<-MIDsub[MIDsub$victor==TRUE,]
 victors<-victors[!is.na(victors$country.a),]
