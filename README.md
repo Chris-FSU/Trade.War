@@ -1,4 +1,4 @@
-#Introduction
+# Introduction
 
 As established by [Tyson Chatagnier and Kerim Kavakli 2017](https://journals.sagepub.com/doi/abs/10.1177/0022002715613565?journalCode=jcrb), countries which export similar goods are more likely to engage in militarized interstate disputes. By lobbying for interstate conflict, firms can remove interstate competitiors in their industries.
 In the aftermath of militarized interstate disputes, losers leave markets in which they previously competed with the victors. This evidence suggests that lobbying for war is a viable alternative to market competition for firms seeeking to remove interstate competition.
