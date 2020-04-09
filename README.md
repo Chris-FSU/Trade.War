@@ -11,7 +11,7 @@ The terms "similarity" and "competition" are used interchangeably below. This is
 
 ![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/ExpImpSim.png)
 
-Summary Stats  |1st Quartile |Median      |Mean 3rd     |Quartile
+Summary Stats  |1st Quartile |Median      |Mean         |3rd Quartile
 ---|---|---|---|---
 MID Exports    |0.0049918096 |0.036941446 |0.12774894   |0.18326042
 No MID Exports |0.0001010672 |0.003017975 |0.03495137   |0.01970459
