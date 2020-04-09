@@ -14,11 +14,8 @@ The terms "similarity" and "competition" are used interchangeably below. This is
 Summary Stats  |1st Quartile |Median      |Mean 3rd     |Quartile
 -------------------------------------------------------------------
 MID Exports    |0.0049918096 |0.036941446 |0.12774894   |0.18326042
--------------------------------------------------------------------
 No MID Exports |0.0001010672 |0.003017975 |0.03495137   |0.01970459
--------------------------------------------------------------------
 MID Imports    |0.0435457832 |0.103477091 |0.15263261   |0.20258291
--------------------------------------------------------------------
 No MID Imports |0.0281341570 |0.068383682 |0.10613178   |0.14084482
 
 Export similarity is higher among MID dyad-years than among non-MID dyad-years. Import similarity is also higher for MID versus non-MID dyad-years. The correlation between MIDs and trade profiles is stronger for exports than for imports.
