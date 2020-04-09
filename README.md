@@ -11,13 +11,21 @@ The terms "similarity" and "competition" are used interchangeably below. This is
 
 ![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/ExpImpSim.png)
 
-The difference of exports is larger than the import difference between MID and peace dyads. There is a substantive difference in both cases. Countries who engage in MIDs have more market competition generally.
+               1st Quartile      Median       Mean 3rd Quartile
+MID Exports    0.0049918096 0.036941446 0.12774894   0.18326042
+No MID Exports 0.0001010672 0.003017975 0.03495137   0.01970459
+MID Imports    0.0435457832 0.103477091 0.15263261   0.20258291
+No MID Imports 0.0281341570 0.068383682 0.10613178   0.14084482
 
-Exports tend to be more specific to a country's production factor endowments. A country can't export what it can't produce. Imports do not tend to be so specific because they include goods not used for industry. It may be worthwhile to remove consumer goods from the import data and reexamine.
+Export similarity is higher among MID dyad-years than among non-MID dyad-years. Import similarity is also higher for MID versus non-MID dyad-years. The correlation between MIDs and trade profiles is stronger for exports than for imports.
+
+Exports tend to be more specific to a country's production factor endowments. A country can't export what it can't produce. Imports do not tend to be so specific because they include goods not used for industry. Thus, it is unsurprising that the correlation is stronger for imports than for exports and that imports are generally more similar than exports are.
+
+The explanation given by Chatagnier and Kavakli is that firms with interstate competitors lobby their governments to take more hostile postures toward each other. They intend to remove competitors from the market by force. I investigate whether this goal is achieved by militarized interstate disputes.
 
 # Evidence for My Claims
 
-Losers leave markets. Two forms of evidence are shown below. First, trade similarity within a dyad decreases from the onset of a MID to the end of that MID. Second, trade similarity between a state before an MID and that same state after an MID is less similar for losers than for winners. In other words, losers' export portfolios change much more drastically than winners' export portfolios do over the course of an MID. For both pieces of evidence, the effect is much stronger with more hostile MIDs (i.e. actual war rather than threats).
+Losers leave markets. Two forms of evidence are shown below. First, trade similarity within a dyad decreases from the onset of a MID to the end of that MID. Second, trade similarity between a state before an MID and that same state after an MID is less similar for losers than for winners. In other words, losers' export portfolios change more drastically than winners' export portfolios do over the course of an MID. For both pieces of evidence, the effect is much stronger with more hostile MIDs (i.e. actual war rather than threats).
 
 ![](https://github.com/Chris-FSU/Trade.War/blob/master/fig/ExpChangeHost1.png)
 
